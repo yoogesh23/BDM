@@ -7,12 +7,12 @@ import joblib  # Use this to load your trained model
 model = joblib.load("random_forest_model.pkl")
 
 # set_page_config must be the first Streamlit command
-st.set_page_config(page_title="Credit Card Approval Prediction", layout="centered")
+st.set_page_config(page_title="Personal Loan Approval Prediction", layout="centered")
 
-st.title("Credit Card Approval Prediction App")
+st.title("Personal Loan Approval Prediction App")
 
 st.write("""
-This app predicts whether a customer will be **approved for a credit card** based on their details.
+This app predicts whether a customer will be **approved for a Personal Loan** based on their details.
 Please enter the following details:
 """)
 
@@ -23,7 +23,7 @@ income = st.number_input("Annual Income (in thousands $)", min_value=8, max_valu
 zip_code = st.text_input("ZIP Code", value="94000")
 
 family = st.selectbox("Family Size", [1, 2, 3, 4], index=1)
-ccavg = st.number_input("Credit Card Avg Monthly Spend ($)", min_value=0.0, max_value=10.0, value=1.5, step=0.1)
+ccavg = st.number_input("Personal Loan Avg Monthly Spend ($)", min_value=0.0, max_value=10.0, value=1.5, step=0.1)
 education = st.selectbox("Education Level", [1, 2, 3], format_func=lambda x: f"Education Level {x}")
 mortgage = st.number_input("Mortgage ($)", min_value=0, max_value=635, value=0)
 
@@ -61,9 +61,9 @@ def predict_credit_card(input_df):
 if st.button("Predict"):
     prediction = predict_credit_card(input_data)
     if prediction == 1:
-        st.success("The customer is likely to be **APPROVED** for a credit card!")
+        st.success("The customer is likely to be **APPROVED** for a Personal Loan!")
     else:
-        st.error("The customer is **NOT APPROVED** for a credit card.")
+        st.error("The customer is **NOT APPROVED** for a Personal Loan.")
     
     st.write("#### Customer Details")
     st.dataframe(input_data)
